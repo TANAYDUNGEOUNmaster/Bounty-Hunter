@@ -91,6 +91,7 @@ th {
         <input type="date" id="date" name="date" required><br>
     	<br><input type="submit" name="submit" value="View Results">
     </form>
+    <br>
 
 
 
@@ -101,5 +102,5 @@ th {
 
     
    <br> <a href="gethunterinfo.php">Get hunted task info</a><br>
-<br><br><a href="taskmenu.php">Back to home</a>
+<br><a href="taskmenu.php">Back to home</a>
     <?php include "templates/footer.php"; ?>

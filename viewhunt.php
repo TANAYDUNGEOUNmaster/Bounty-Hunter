@@ -37,6 +37,13 @@ if (isset($_POST['submit'])) {
     <h2>Results</h2>
 
 <style>
+body{
+
+background-image: url(https://wishfuldoing.com/wp-content/uploads/light-grey-wallpaper-textured.jpg);
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
 table {
   border-collapse: collapse;
   width: 100%;
