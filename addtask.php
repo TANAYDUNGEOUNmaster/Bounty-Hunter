@@ -1,75 +1,111 @@
-<?php
-     session_start();
-?>
+ 
+<?php include "templates/header.php"; ?>
 <?php
 if (isset($_POST['submit'])) {
   require "config.php";
   require "common.php";
 
-  try {
-    $connection = new PDO($dsn, $username, $password, $options);
-    // insert new user code will go here
-    $new_task = array(
-    
-   "t_userid"  => $_POST['t_userid'],
-   "w_desc"  => $_POST['w_desc'],
-   "date"    => $_POST['date'],
-   "city"    => $_POST['city'],
-   "money"   => $_POST['money']
-    
-);
+   $connection = new PDO($dsn, $username, $password, $options);
 
-$sql = sprintf(
-    "INSERT INTO %s (%s) values (%s)",
-    "taskinfo",
-    implode(", ", array_keys($new_task)),
-    ":" . implode(", :", array_keys($new_task))
-);
+ $sql = 
+    "INSERT INTO taskinfo (t_userid,w_desc,date,state,city,money) values ('{$_SESSION['username']}','".$_POST['w_desc']."','".$_POST['date']."','".$_POST['state']."','".$_POST['city']."','".$_POST['money']."')";
+    
 
-$statement = $connection->prepare($sql);
-$statement->execute($new_task);
+ $statement = $connection->prepare($sql);
+$statement->execute();
  
- } catch(PDOException $error) {
-    echo $sql . "<br>" . $error->getMessage();
-  }
+ 
+ 
 
-}
+
 ?>
-<?php include "templates/header.php"; ?>
-<?php if (isset($_POST['submit']) && $statement) { ?>
+
+ 
 <?php echo "  Task successfully added.";
-} ?>
-   
- 
- 
-    <form class="myform" action="addtask.php" method="post"     enctype="multipart/form-data">
+} 
+?>
 
-    	 <label><b>UserID:</label><br>
-    	<input name="t_userid" type="text" class="inputvalues" 
-        placeholder="Enter your UserID"  required/>
-         <br> 
-    	 
+<style type="text/css">
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+</style>
+
+
+      <center><h2 style="color: white;font-size: 50px; font-family: 'Alfa Slab One';text-align: left;"> 
+  Add new task
+  </h2> </center>
+
+  <div class="card" style="width: 100%;  color: white; background-color:  grey;background-repeat: no-repeat;background-attachment: fixed;
+background-size: cover; ">
+
+  <!-- Card body -->
+  <div class="card-body">
+    <br><br><form class="myform" action="addtask.php" method="post"     enctype="multipart/form-data" style="color: white;">
+
+    	  
+    	 <div class="md-form">
         <label><b>Work Description:</label><br>
-    	<input name="w_desc" type="text" class="inputvalues" 
-        placeholder="Describe the task"  required/>
-         <br> 
+    	<input name="w_desc" type="text" id="materialFormCardNameEx" class="form-control" placeholder="Describe the task"  required/>
+          </div>
+          
 
+ <div class="md-form">
         <label><b>Date:</label><br>
-        <input type="date" id="date" name="date" required><br>
-         
-       <label><b>City: </b> </label> <br>
-	<input name="city" type="text" class="inputvalues"                         placeholder="Enter City name"  required /> <br>
+        <input type="date" id="materialFormCardNameEx" class="form-control" name="date" required> 
+</div>
+        <label><b>State: </b> </label>  
+   
+    <div class="md-form">
+   <select name="state" class="form-control" id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+<option value="" disabled selected>Choose State</option>
+<option>Odisha</option>
+<option>Maharashtra</option>
+<option>TamilNadu</option>
+<option>UttarPradesh</option>
+<option>WestBengal</option>
+<option>Rajasthan</option>
+</select>
+</div>
 
-    	<label><b>Money: </b> </label> <br>
-	<input name="money" type="text" class="inputvalues"                         placeholder="Enter payment amount"  required /> <br>
+       <label><b>City: </b> </label>  
+	 <div class="md-form">
+<select name="city" class="form-control" id="citySelect" size="1" >
+<option value="" disabled selected>Choose City</option>
+<option></option>
+</select>
+</div>
 
+
+     	<label><b>Money: </b> </label>  
+     <div class="md-form">
+	<input name="money" type="text" class="form-control"                         placeholder="Enter payment amount"  required /> <br>
+</div>
     	 
-    	<br><input type="submit" name="submit" id="sub_btn" value="Submit" style="float: left;><br><br>
+    	<br><input type="submit" name="submit" id="sub_btn" value="Submit" class="button b1"   ><br><br>
      
   
-<br><a href="taskmenu.php"></a>
-</form>
-<br><br><a href="taskmenu.php">Back to home</a>
  
+</form>
+
+
+
+    
+
+</div></div>
+</div></div>
+<br><br> 
+ 
+
  
     <?php include "templates/footer.php"; ?>

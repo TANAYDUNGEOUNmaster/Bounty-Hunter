@@ -1,4 +1,5 @@
 <?php 
+ 
 if (isset($_POST['submit'])) {
   try {
     require "config.php";
@@ -7,7 +8,7 @@ if (isset($_POST['submit'])) {
     $connection = new PDO($dsn, $username, $password, $options);
         // fetch data code will go here
     
-$sql = "SELECT huntid,huntinfo.taskid,fname,cntnumber,email,w_desc,date,city,money,status
+$sql = "SELECT huntid,huntinfo.taskid,fname,cntnumber,email,w_desc,date,state,city,money,status
 FROM huntinfo
 INNER JOIN taskinfo
 ON huntinfo.taskid=taskinfo.taskid
@@ -30,23 +31,18 @@ $result = $statement->fetchAll();
 }
 ?>
 <?php require "templates/header3.php"; ?>
-
+<h2 style="color: white;font-size: 50px; font-family: 'Alfa Slab One';text-align: left;">Hunt History</h2>
 <?php
 if (isset($_POST['submit'])) {
   if ($result && $statement->rowCount() > 0) { ?>
-    <h2>Results</h2>
+    <h6 style="color: white;">Results for <?php echo escape($_POST['h_userid']); ?></h6>
 
 <style>
-body{
-
-background-image: url(https://wishfuldoing.com/wp-content/uploads/light-grey-wallpaper-textured.jpg);
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;
-}
+ 
 table {
   border-collapse: collapse;
   width: 100%;
+  background-color: white;
 }
 
 th, td {
@@ -94,25 +90,44 @@ th {
       </tr>
     <?php } ?>
       </tbody>
-  </table>
+  </table><br>
   <?php } else { ?>
     > No results found for <?php echo escape($_POST['h_userid']); ?>.
   <?php }
 } ?>
+<style type="text/css">
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+</style>
+     
+<div class="card" style="width: 100%;  color: white; background-color: grey;background-repeat: no-repeat;background-attachment: fixed;
+background-size: cover; ">
 
-    <h2>Find your choosen tasks-></h2>
-
-    <form class="myform" action="viewhunt.php" method="post"     enctype="multipart/form-data">
-
+  <!-- Card body -->
+  <div class="card-body">
+    <br> <form class="myform" action="viewhunt.php" method="post"  style="color: white;"   enctype="multipart/form-data">
+ <div class="md-form">
          <label><b>UserID:</label><br>
-    	<input name="h_userid" type="text" class="inputvalues" 
+    	<input name="h_userid" type="text"  class="form-control"
         placeholder="Enter your UserID"  required/>
          <br> 
-
+</div>
     	 
-    	<br><input type="submit" name="submit" value="View Results">
+    	 <input type="submit" name="submit" class="button b1" value="View Results">
     </form>
 
-    <a href="huntmenu.php">Back to home</a>
+ </div>
+</div>   
 
     <?php include "templates/footer2.php"; ?>

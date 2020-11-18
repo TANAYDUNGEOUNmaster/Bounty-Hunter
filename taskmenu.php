@@ -80,7 +80,7 @@ background-size: cover;
  
 	 
 	</form>
-   <a href="homepage.php"><input type="button" id="home_btn" value="Home"  />  
+   <a href="dashboard.php"><input type="button" id="home_btn" value="Home"  />  
    
  </body>
 </html>

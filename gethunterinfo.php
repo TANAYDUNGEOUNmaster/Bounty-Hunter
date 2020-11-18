@@ -1,4 +1,5 @@
 <?php 
+ 
 if (isset($_POST['submit'])) {
   try {
     require "config.php";
@@ -29,23 +30,26 @@ $result = $statement->fetchAll();
 }
 ?>
  
-<?php require "templates/header4.php"; ?>
+<?php require "templates/header.php"; ?>
+     <center><h2 style="color: white;font-size: 50px; font-family: 'Alfa Slab One'; text-align: left;">Manage Tasks</h2> </center> 
 
 <?php
 if (isset($_POST['submit'])) {
   if ($result && $statement->rowCount() > 0) { ?>
-    <h2>Results</h2>
+    <br><h6 style="color: white;">Results for <?php echo escape($_POST['t_userid']); ?></h6>
 
 <style>
 table {
   border-collapse: collapse;
   width: 100%;
+   background-color:white;
 }
 
 th, td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  color: black;
 }
 
 tr:hover {background-color:#f5f5f5;}
@@ -54,7 +58,23 @@ th {
   background-color: #00008B;
   color: white;
 }
+ 
 </style>
+<style type="text/css">
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+</style> 
     <table>
       <thead>
 <tr>
@@ -85,6 +105,26 @@ th {
     <?php } ?>
       </tbody>
   </table>
+ 
+    
+<div class="card" style="width: 100%;  color: white; background-color: grey;background-repeat: no-repeat;background-attachment: fixed;
+background-size: cover; ">
+
+  <!-- Card body -->
+  <div class="card-body">
+    <br> <form class="myform" action="gethunterinfo.php" method="post"  style="color: white;"   enctype="multipart/form-data">
+ <div class="md-form">
+  <label><b>Modify Task Status</label><br>
+         <label><b>Task ID:</label><br>
+      <input name="taskid" type="text"  class="form-control" placeholder="Enter task ID"  required/>
+         <br> 
+</div>
+       
+       <input type="submit" name="add" class="button b1" value="Change">
+    </form>
+
+ </div>
+</div>   <br>
   <?php } else { ?>
     > No results found for <?php echo escape($_POST['t_userid']); ?>.
   <?php }
@@ -122,28 +162,48 @@ $statement->execute($new_hunt);
 <?php } ?>
 
    
-    <h4>Find the hunter's info-></h4>
- 
-    <form class="myform" action="gethunterinfo.php" method="post"     enctype="multipart/form-data">
+    
+<style type="text/css">
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+</style> 
+    
 
+  
+
+  
+
+    <!-- Card -->
+<div class="card" style="width: 100%;  color: white; background-color: grey;background-repeat: no-repeat;background-attachment: fixed;
+background-size: cover; ">
+
+  <!-- Card body -->
+  <div class="card-body">
+    <br> <form class="myform" action="gethunterinfo.php" method="post"  style="color: white;"   enctype="multipart/form-data">
+ <div class="md-form">
          <label><b>UserID:</label><br>
-    	<input name="t_userid" type="text" class="inputvalues" 
-        placeholder="Enter your UserID"   />
+      <input name="t_userid" type="text"  class="form-control"
+        placeholder="Enter your UserID"  required/>
          <br> 
-
-    	 
-    	<input type="submit" name="submit" value="View Results">
-    </form><br>
-
-<h4>Change task status -></h4>
-         
- 
-       <label><b>Choose taskID:</label>
-    	<input type="text" id="taskid" name="taskid" class="inputvalues"                 placeholder="Enter completed task Task ID "    /> <br>
-        <input type="submit" name="add" value="change status">
+</div>
+       
+       <input type="submit" name="submit" class="button b1" value="View Results">
     </form>
 
+ </div>
+</div>   
+    <!-- Material form register -->
 
-    <a href="taskmenu.php">Back to home</a>
-
-    <?php include "templates/footer.php"; ?>
+   
+  <?php include "templates/footer.php"; ?>

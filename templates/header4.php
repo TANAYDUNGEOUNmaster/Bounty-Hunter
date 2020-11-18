@@ -10,37 +10,14 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
-body{
-
-background-image: url(https://wishfuldoing.com/wp-content/uploads/light-grey-wallpaper-textured.jpg);
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;
-}
+ 
 </style>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-	<div class="container">
-  <a class="navbar-brand" href="project.php">Bounty Hunter</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-    
-    <ul class="nav navbar-nav navbar-right">
-    	<li class="nav-item">
-        <a class="nav-link" href="index.php">LOGIN</a>
-      </li>
-      <li class="nav-item">
-       <a class="nav-link" href="register.php">SIGN UP</a>
-      </li>
-    </ul>
-  </div>
-</div>
-</nav>
+   <?php include "dashboard.php"; ?> 
 <br>
 <br>
 <br>

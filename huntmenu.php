@@ -75,7 +75,7 @@ background-size: cover;
 
 	<input name="logout" type="submit" id="logout_btn" value="Logout" style="float: center;" /> 
 	</form> 
-<a href="homepage.php"><input type="button" id="home_btn" value="Home"  /> 
+<a href="dashboard.php"><input type="button" id="home_btn" value="Home"  /> 
  </body>
 </html>
  

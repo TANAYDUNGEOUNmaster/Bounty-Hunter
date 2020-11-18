@@ -1,4 +1,5 @@
 <?php 
+ 
 if (isset($_POST['submit'])) {
   try {
     require "config.php";
@@ -25,17 +26,18 @@ $result = $statement->fetchAll();
   }
 }
 ?>
-<?php require "templates/header4.php"; ?>
-
+<?php require "templates/header.php"; ?>
+ <center><h2 style="color: white;font-size: 50px; font-family: 'Alfa Slab One';text-align: left;">Bounty History</h2></center> <br>
 <?php
 if (isset($_POST['submit'])) {
   if ($result && $statement->rowCount() > 0) { ?>
-    <h2>Results</h2>
+    <h6>Results for date <?php echo escape($_POST['date']); ?></h6>
 
 <style>
 table {
   border-collapse: collapse;
   width: 100%;
+  background-color: white;
 }
 
 th, td {
@@ -56,6 +58,7 @@ th {
 <tr>
   <th>task ID</th>
   <th>Work description</th>
+  <th>State</th>
   <th>City</th>
   <th>Money</th>
   <th>Status</th>
@@ -66,34 +69,57 @@ th {
       <tr>
 <td><?php echo escape($row["taskid"]); ?></td>
 <td><?php echo escape($row["w_desc"]); ?></td>
+<td><?php echo escape($row["state"]); ?></td>
 <td><?php echo escape($row["city"]); ?></td>
 <td><?php echo escape($row["money"]); ?></td>
 <td><?php echo escape($row["status"]); ?></td> 
       </tr>
     <?php } ?>
       </tbody>
-  </table>
+  </table><br>
   <?php } else { ?>
     > No results found for <?php echo escape($_POST['date']); ?>.
   <?php }
 } ?>
+<style type="text/css">
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+</style>
+    
+<div class="card" style="width: 100%;  color: white; background-color: grey;background-repeat: no-repeat;background-attachment: fixed;
+background-size: cover; ">
 
-    <h2>Find your posted tasks based on date</h2>
+  <!-- Card body -->
+  <div class="card-body">
+    <br><br><form class="myform" action="viewtask.php" method="post"  style="color: white;"   enctype="multipart/form-data">
 
-    <form class="myform" action="viewtask.php" method="post"     enctype="multipart/form-data">
-
+ <div class="md-form">
          <label><b>UserID:</label><br>
-    	<input name="t_userid" type="text" class="inputvalues" 
+    	<input name="t_userid" type="text" class="form-control"
         placeholder="Enter your UserID"  required/>
-         <br> 
+  </div>        
 
+ <div class="md-form">
     	 <label><b>Date:</label><br>
-        <input type="date" id="date" name="date" required><br>
-    	<br><input type="submit" name="submit" value="View Results">
+        <input type="date" id="date" name="date" class="form-control" required><br>
+        </div>
+    	<br><input type="submit" name="submit" class="button b1" value="View Results">
     </form>
     <br>
 
-
+</div>
+</div>
 
 
 
@@ -101,6 +127,6 @@ th {
 
 
     
-   <br> <a href="gethunterinfo.php">Get hunted task info</a><br>
-<br><a href="taskmenu.php">Back to home</a>
+   
+ 
     <?php include "templates/footer.php"; ?>

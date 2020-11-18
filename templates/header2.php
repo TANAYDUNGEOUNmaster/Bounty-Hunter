@@ -7,53 +7,44 @@
 
     <title>Hunt Menu</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/profile.css" />
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <style>
-body{
-
-background-image: url(https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;
-}
+ 
 </style>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<script type="text/javascript">
+var citiesByState = {
+Odisha: ["Bhubaneswar","Puri","Cuttack"],
+Maharashtra: ["Mumbai","Pune","Nagpur"],
+TamilNadu: ["kochi","Chennai","Kanpur"]
+}
+function makeSubmenu(value) {
+if(value.length==0) document.getElementById("citySelect").innerHTML = "<option></option>";
+else {
+var citiesOptions = "";
+for(cityId in citiesByState[value]) {
+citiesOptions+="<option>"+citiesByState[value][cityId]+"</option>";
+}
+document.getElementById("citySelect").innerHTML = citiesOptions;
+}
+}
+function displaySelected() { var country = document.getElementById("countrySelect").value;
+var city = document.getElementById("citySelect").value;
+alert(country+"\n"+city);
+}
+function resetSelection() {
+document.getElementById("countrySelect").selectedIndex = 0;
+document.getElementById("citySelect").selectedIndex = 0;
+}
+</script>
 
   </head>
 
-  <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-	<div class="container">
-  <a class="navbar-brand" href="project.php">Bounty Hunter</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+  <body onload="resetSelection()">
     
-    <ul class="nav navbar-nav navbar-right">
-    	<li class="nav-item">
-        <a class="nav-link" href="index.php">LOGIN</a>
-      </li>
-      <li class="nav-item">
-       <a class="nav-link" href="register.php">SIGN UP</a>
-      </li>
-    </ul>
-  </div>
-</div>
-</nav>
-<br>
-<br>
-<br>
 
-	<div id="main-wrapper2">
-	<center>
-
-	<h1>Hunt Menu</h1>
-        <h2><u>
-	Hunt new task
-	</h2></u>
-	</center>
-     
-  </body>
-</html>
+<?php include "dashboard.php"; ?>
+	 <div class="container emp-profile" style=" background: transparent;);margin-top: 2%; margin-bottom: 7%;">

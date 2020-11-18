@@ -1,19 +1,33 @@
+ 
 <?php
-	session_start();
-	require 'dbconfig/config.php';
 	
+	require 'dbconfig/config.php';
+
+   
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Homepage</title>
-<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<title>BountyHunter|Home</title>
 
-<link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+     
+    <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
+     
+<link rel="stylesheet" href="css/general.css">
+<link rel="stylesheet" href="css/profile2.css">
+<link rel="stylesheet" href="css/loader.css">
+ 
+ 
+ 
+      
+ 
 <style>
 body{
 
-background-image: url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
+background-image: url('imgs/pic1.jpeg');
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-size: cover;
@@ -21,84 +35,211 @@ background-size: cover;
 </style>
 
 </head>
-
-<body >
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-	<div class="container">
-  <a class="navbar-brand" href="project.php">Bounty Hunter</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
   
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+
+<body>
+
+ 
+
+   
+ <?php include("dashboard.php"); ?>
+
+	
+ 
+	 
+	
+	 
+    <div class="container emp-profile" >
+  
+   
+     <div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header" style="color: black;font-size: 50px; font-family: 'Alfa Slab One';"> Dashboard </h1>
+        
+        <ol class="breadcrumb">
+            <li class="active">
+            
+                 
+            
+            </li>
+        </ol>
+        
+    </div>
+</div>
+
+<div class="row">
+   
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-blue">
+            
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                       
+                       &nbsp;&nbsp;&nbsp; <i class="fa fa-trophy fa-5x"></i>
+                        
+                    </div>
+                    
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">3</div>
+                           
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bounties </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <a href="viewtask.php">
+                <div class="panel-footer">
+                   
+                    <span class="pull-left">
+                        View Details 
+                    </span>
+                    
+                    <span class="pull-right"> 
+                        <i class="fa fa-arrow-circle-right"></i> 
+                    </span> 
+                    
+                    <div class="clearfix"></div>
+                    
+                </div>
+            </a>
+            
+        </div>
+    </div>
+   
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                       
+                       &nbsp;&nbsp;&nbsp;  <i class="fa fa-tasks fa-5x"></i>
+                        
+                    </div>
+                    
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"> 2 </div>
+                           
+                        <div>&nbsp;&nbsp;  Pending Tasks </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <a href="gethuntinfo.php">
+                <div class="panel-footer">
+                   
+                    <span class="pull-left">
+                        View Details 
+                    </span>
+                    
+                    <span class="pull-right">
+                        <i class="fa fa-arrow-circle-right"></i> 
+                    </span>
+                    
+                    <div class="clearfix"></div>
+                    
+                </div>
+            </a>
+            
+        </div>
+    </div>
+   
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-orange">
+            
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                       
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-bullseye fa-5x"></i>
+                        
+                    </div>
+                    
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"> 3 </div>
+                           
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Hunts </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <a href="viewhunt.php">
+                <div class="panel-footer">
+                   
+                    <span class="pull-left">
+                        View Details 
+                    </span>
+                    
+                    <span class="pull-right">
+                        <i class="fa fa-arrow-circle-right"></i> 
+                    </span>
+                    
+                    <div class="clearfix"></div>
+                    
+                </div>
+            </a>
+            
+        </div>
+    </div>
+   
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                       
+                        &nbsp;&nbsp;&nbsp; <i class="fa fa-tasks fa-5x"></i>
+                        
+                    </div>
+                    
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">2 </div>
+                           
+                        <div>&nbsp;&nbsp;  Pending Hunts </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <a href="">
+                <div class="panel-footer">
+                   
+                    <span class="pull-left">
+                        View Details 
+                    </span>
+                    
+                    <span class="pull-right">
+                        <i class="fa fa-arrow-circle-right"></i> 
+                    </span>
+                    
+                    <div class="clearfix"></div>
+                    
+                </div>
+            </a>
+            
+        </div>
+    </div>
     
-    <ul class="nav navbar-nav navbar-right">
-    	<li class="nav-item">
-        <a class="nav-link" href="index.php">LOGIN</a>
-      </li>
-      <li class="nav-item">
-       <a class="nav-link" href="register.php">SIGN UP</a>
-      </li>
-    </ul>
+</div>
   </div>
 </div>
-</nav>
-<br>
-<br>
-<br>
-
-	<div id="main-wrapper2">
-	<center>
-	<h2>
-	HOMEPAGE
-	</h2>
-	
-	<h3>Welcome
-	<?php 
-		echo $_SESSION['username'] 
-	?>
-	!
-	</h3>
-	
-	
-	<?php echo '<img class="avatar" src="'.$_SESSION["imglink"].'">'; ?>
-	 
-	
-	<?php
-	
-	?>
-	 
-	 
-	
-	 
-	
-	 
-	</center>
 	
 	
 	
-	<form class="myform" action="homepage.php" method="post">
-	  
-        
- 
-	 <a href=" taskmenu.php"><input type="button" id="post_btn" value="Post Task"  /> 
-
-	 <a href=" huntmenu.php"><input type="button" id="hunt_btn" value="Hunt Task" style="float: right;/> 
- 
-	<input name="logout" type="submit" id="logout_btn" value="Logout" style="float: center;" /> 
-	</form>
-	<input name="logout" type="submit" id="logout_btn" value="Logout" style="float: center;" /> 
-	<?php
-		if(isset($_POST['logout']))
-		{
-			session_destroy();
-			header('location:index.php');
-		}
-	?>
+	
 	
 	</div>
-	
-	
+</div>
+
 </body>
 
 

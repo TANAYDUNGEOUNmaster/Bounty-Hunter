@@ -1,3 +1,4 @@
+<?php require "templates/header2.php"; ?>
 <?php 
 if (isset($_POST['submit'])) {
   try {
@@ -9,7 +10,7 @@ if (isset($_POST['submit'])) {
     
 $sql = "SELECT *
 FROM taskinfo
-WHERE city = :city AND status='UNDONE'";
+WHERE t_userid !='{$_SESSION['username']}' AND city = :city AND status='UNDONE'";
 
 $city = $_POST['city'];
 
@@ -23,17 +24,18 @@ $result = $statement->fetchAll();
   }
 }
 ?>
-<?php require "templates/header2.php"; ?>
-
+<center><h2 style="color: white;font-size: 50px; font-family: 'Alfa Slab One';text-align: left;">Hunt New Tasks</h2><br> 
+</center>
 <?php
 if (isset($_POST['submit'])) {
   if ($result && $statement->rowCount() > 0) { ?>
-    <h2>Results</h2>
+    <h6 style="color: white;">Results for <?php echo escape($_POST['city']); ?></h6>
 
 <style>
 table {
   border-collapse: collapse;
   width: 100%;
+  background-color:white;
 }
 
 th, td {
@@ -49,8 +51,21 @@ th {
   color: white;
 }
 </style>
-
-
+ <style type="text/css">
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+</style>
     <table>
       <thead>
 <tr>
@@ -58,6 +73,7 @@ th {
   <th>User ID</th>  
   <th>Work desription</th>
   <th>Date</th>
+  <th>State</th>
   <th>City</th>
   <th>Money</th>
    
@@ -70,6 +86,7 @@ th {
 <td><?php echo escape($row["t_userid"]); ?></td>
  <td><?php echo escape($row["w_desc"]); ?></td>
 <td><?php echo escape($row["date"]); ?></td>
+<td><?php echo escape($row["state"]); ?></td>
 <td><?php echo escape($row["city"]); ?></td>
 <td><?php echo escape($row["money"]); ?></td>
  
@@ -77,9 +94,26 @@ th {
     <?php } ?>
       </tbody>
   </table>
+<br> <div class="card" style="width: 100%;  color: white; background-color: grey;background-repeat: no-repeat;background-attachment: fixed;
+background-size: cover; ">
+
+  <!-- Card body -->
+  <div class="card-body">
+<form class="myform" method="post" style="color: white;">
+  <h6><b>Select the task you want to hunt</b></h6>
+       
+ 
+       
+      <input type="text" id="taskid" name="taskid" class="form-control" placeholder="Enter Task ID you want to hunt"    /> <br>
+        <input type="submit" name="add"class="button b2" value="Hunt this task">
+      </b></label>
+
+    </form>
+     </div>
+  </div>   <br><br>
   <?php } else { ?>
 
-			 
+       
   <b> > No results found for <?php echo escape($_POST['city']); ?>.
   <?php }
 } ?>
@@ -91,57 +125,72 @@ if (isset($_POST['add'])) {
   require "config.php";
   require "common.php";
 
-  try {
-    $connection = new PDO($dsn, $username, $password, $options);
-    // insert new user code will go here
-    $new_hunt = array(
-    "taskid"    => $_POST['taskid'],
-    "h_userid"    => $_POST['h_userid']
-);
+   $connection = new PDO($dsn, $username, $password, $options);
 
-$sql = sprintf(
-    "INSERT INTO %s (%s) values (%s)",
-    "huntinfo ",
-    implode(", ", array_keys($new_hunt)),
-    ":" . implode(", :", array_keys($new_hunt))
-);
+ $sql = 
+   "INSERT INTO huntinfo (taskid,h_userid) values ('".$_POST['taskid']."','{$_SESSION['username']}')";
+    
 
-$statement = $connection->prepare($sql);
-$statement->execute($new_hunt);
+ $statement = $connection->prepare($sql);
+$statement->execute();
  
- } catch(PDOException $error) {
-    echo $sql . "<br>" . $error->getMessage();
-  }
+ 
+ 
 }
+
 ?>
  
-<?php if (isset($_POST['add']) && $statement) { ?>Task ID
-  <?php echo escape($_POST['taskid']); ?> successfully added.
-<?php } ?>
-  
+<?php if (isset($_POST['add']) && $statement) { ?>Task ID <?php echo escape($_POST['taskid']); ?> successfully added. <?php } ?>
+ <style type="text/css">
+  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+</style>
 
 
 
 
-<h4>Find tasks based on location -></h4>
+<div class="card" style="width: 100%;  color: white; background-color: grey;background-repeat: no-repeat;background-attachment: fixed;
+background-size: cover; ">
 
-    <form method="post">
-    	<label><b>City:</label><br>
-    	<input type="text" id="city" name="city"  class="inputvalues"                 placeholder="Enter City Name"   /> <br>
+  <!-- Card body -->
+  <div class="card-body">
 
-    	<input type="submit" name="submit" value="View Results"><br><br>
-
-<h4>Select the task you want to hunt -></h4>
-       <label><b>UserID:</label><br>
-    	<input name="h_userid" type="text" class="inputvalues" 
-        placeholder="Enter your UserID" />
-         <br> 
- 
-       <label><b>Choose task:</label>
-    	<input type="text" id="taskid" name="taskid" class="inputvalues"                 placeholder="Enter Task ID you want to hunt"    /> <br>
-        <input type="submit" name="add" value="Hunt this task">
+     <form class="myform" method="post" style="color: white;">
+<center><h3>Search tasks</h3></center>
+<div class="md-form">
+      <label><b>State:</label><br>
+      <select name="state" class="form-control" id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+<option value="" disabled selected>Choose State</option>
+<option>Odisha</option>
+<option>Maharashtra</option>
+<option>TamilNadu</option>
+</select>
+</div>
+<div class="md-form">
+      <label><b>City:</label><br>
+      <select name="city" class="form-control" id="citySelect" size="1" >
+<option value="" disabled selected>Choose City</option>
+<option></option>
+</select>
+</div>
+<div class="md-form">
+     <br> <input type="submit" name="submit" value="View Results" class="button b1"><br><br>
+</div> 
     </form>
 
-    <br><br><a href="huntmenu.php">Back to home</a>
+  </div>
+  </div>   
 
-    <?php include "templates/footer2.php"; ?>
+   </body>
+</html>
